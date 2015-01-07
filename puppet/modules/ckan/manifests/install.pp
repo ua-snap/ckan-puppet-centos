@@ -20,7 +20,7 @@ class ckan::install {
   #}
 
   # Install CKAN deps
-  $ckan_libs = ['httpd', 'xml-common', 'git', 'python-devel', 'libxslt', 'libxslt-devel',
+  $ckan_libs = ['python-pip','httpd', 'xml-common', 'git', 'python-devel', 'libxslt', 'libxslt-devel',
                 'libxml2', 'libxml2-devel', 'python-virtualenv', 'gcc', 'gcc-c++', 'make',
                 'java-1.6.0-openjdk-devel', 'java-1.6.0-openjdk', 'tomcat6', 'xalan-j2', 'unzip',
                 'policycoreutils-python','mod_wsgi','xml-commons-resolver','xml-commons-apis']
