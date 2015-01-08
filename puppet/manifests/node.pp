@@ -3,7 +3,7 @@ node 'ckan-dev' {
 		ensure => present,
 	}
 
-	#file {"/usr/lib/ckan":
+	#file {"/usr/lib/ckan/default":
 	#	require => [ User["ckan"], Group["ckan"] ],
 	#	ensure => directory,
 	#	owner => "ckan",
@@ -16,10 +16,10 @@ node 'ckan-dev' {
 		managehome => true,
 		gid => "ckan",
 		shell => "/bin/bash",
-		home => "/usr/lib/ckan",
+		home => "/usr/lib/ckan/default",
 	}
 
-	file {"/usr/lib/ckan/.bashrc":
+	file {"/usr/lib/ckan/default/.bashrc":
 		ensure => 'link',
 		target => '/etc/bashrc',
 	}
@@ -28,7 +28,7 @@ node 'ckan-dev' {
 		ensure => "installed"
 	}
 
-	package { "vim":
+	package { "vim-enhanced":
 		ensure => "installed"
 	}
 
