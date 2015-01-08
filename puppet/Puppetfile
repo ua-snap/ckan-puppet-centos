@@ -1,0 +1,17 @@
+# Configuration for librarian-puppet lists the modules we depend upon.
+# 
+forge "http://forge.puppetlabs.com"
+
+mod "puppetlabs/apache"
+mod "puppetlabs/stdlib"
+mod "maestrodev/wget"
+mod "puppetlabs/concat"
+mod "puppetlabs/postgresql"
+mod "saz/memcached"
+mod "example42/puppi"
+mod "example42/monitor"
+mod "example42/solr"
+mod "stankevich/python"
+
+#mod "ckan",
+#   :path => "/vagrant/puppet/modules/ckan"

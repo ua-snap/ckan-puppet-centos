@@ -74,13 +74,22 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # end
 
   config.vm.provision :shell do |shell|
-             shell.inline = "wget http://download.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm;
-                             rpm -ivh epel-release-6-8.noarch.rpm;
+             shell.inline = "if [ ! -e /etc/yum.repos.d/epel.repo ]; then wget http://download.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm;
+                             rpm -ivh epel-release-6-8.noarch.rpm; fi;
 			     puppet module install puppetlabs-stdlib;
                              puppet module install maestrodev-wget;
                              puppet module install puppetlabs-concat;
-                             puppet module install puppetlabs-postgresql"
+                             puppet module install puppetlabs-postgresql;
+			     puppet module install puppetlabs-apache;
+			     puppet module install saz/memcached;
+			     puppet module install example42/puppi;
+			     puppet module install example42/monitor;
+			     puppet module install example42/solr;
+			     puppet module install stankevich/python"
   end
+  
+# Having difficulties getting the Puppetfile to work properly with the gem librarian-puppet. Something to look at later?
+#config.vm.provision :shell, :path => "puppet/install_puppet_dependancies.sh"
 
   # Enable provisioning with Puppet stand alone.  Puppet manifests
   # are contained in a directory path relative to this Vagrantfile.
