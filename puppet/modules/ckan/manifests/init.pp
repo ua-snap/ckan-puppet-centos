@@ -114,20 +114,20 @@ class ckan (
     notify  => Class['ckan::service'],
     require => Anchor['ckan::begin'],
   }
-  #class { 'ckan::config':
-  #  site_url         => $ckan::site_url,
-  #  site_title       => $ckan::site_title,
-  #  site_description => $ckan::site_description,
-  #  site_intro       => $ckan::site_intro,
-  #  site_about       => $ckan::site_about,
-  #  site_logo        => $ckan::site_logo,
-  #  plugins          => $ckan::plugins,
-  #  notify           => Class['ckan::service'],
-  #  require          => Class['ckan::install'],
-  #}
+  class { 'ckan::config':
+    site_url         => $ckan::site_url,
+    site_title       => $ckan::site_title,
+    site_description => $ckan::site_description,
+    site_intro       => $ckan::site_intro,
+    site_about       => $ckan::site_about,
+    site_logo        => $ckan::site_logo,
+    plugins          => $ckan::plugins,
+    notify           => Class['ckan::service'],
+    require          => Class['ckan::install'],
+  }
   class { 'ckan::db_config':
     notify  => Class['ckan::service'],
-  #  require => Class['ckan::config'],
+    require => Class['ckan::config'],
   }
 
   class { 'ckan::service': }

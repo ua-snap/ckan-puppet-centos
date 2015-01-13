@@ -28,10 +28,10 @@ class ckan::config (
   #  source  => 'puppet:///modules/ckan/jetty',
   #}
   # Change default schema to use CKAN schema
-  file {'/etc/solr/conf/schema.xml':
-    ensure  => link,
-    target  => "$ckan_src/ckan/config/solr/schema-2.0.xml",
-  }
+  #file {'/etc/solr/conf/schema.xml':
+  #  ensure  => link,
+  #  target  => "$ckan_src/ckan/config/solr/schema-2.0.xml",
+  #}
 
   # CKAN configuration
   file { [$ckan_etc, $ckan_default]:
@@ -63,54 +63,62 @@ class ckan::config (
       require => File["$ckan_default/production.ini"],
     }
   }
-  $ckan_data_dir = ['/var/lib/ckan',$ckan_storage_path]
-  file {$ckan_data_dir:
-    ensure => directory,
-    owner  => www-data,
-    group  => www-data,
-    mode   => '0755',
+
+  file { 'ckan_default.conf':
+    path => '/etc/httpd/conf.d/ckan_default.conf',
+    ensure => file,
+    require => Package['httpd'],
+    content => template("ckan/ckan_default.conf.erb"),
   }
+
+  #$ckan_data_dir = ['/var/lib/ckan',$ckan_storage_path]
+  #file {$ckan_data_dir:
+  #  ensure => directory,
+  #  owner  => www-data,
+  #  group  => www-data,
+  #  mode   => '0755',
+  #}
 
   # download the license file if it exists
-  if $ckan::license != '' {
+  #if $ckan::license != '' {
     # add a license
-    file { "$ckan_default/$license_file":
-      ensure => file,
-      source => $ckan::license,
-    }
-  }
+  #  file { "$ckan_default/$license_file":
+  #    ensure => file,
+  #    source => $ckan::license,
+  #  }
+  #}
 
-  if $ckan::custom_imgs != '' {
+  #if $ckan::custom_imgs != '' {
     # manage the default image directory
-    ckan::custom_images { $ckan::custom_imgs: }
-  }
+  #  ckan::custom_images { $ckan::custom_imgs: }
+  #}
 
   # download custom css if specified
-  if $ckan::custom_css != 'main.css' {
-    file {"$ckan_css_dir/custom.css":
-      ensure => file,
-      source => $ckan::custom_css,
-    }
-  }
+  #if $ckan::custom_css != 'main.css' {
+  #  file {"$ckan_css_dir/custom.css":
+  #    ensure => file,
+  #    source => $ckan::custom_css,
+  #  }
+  #}
 
   # backup configuration
-  file { $backup_dir:
-    ensure => directory,
-    owner  => backup,
-    group  => backup,
-    mode   => '0755',
-  }
-  file { '/usr/local/bin/ckan_backup.bash':
-    ensure  => file,
-    source  => 'puppet:///modules/ckan/ckan_backup.bash',
-    mode    => '0755',
-    require => File[$backup_dir],
-  }
-  cron {'ckan_backup':
-    command => '/usr/local/bin/ckan_backup.bash',
-    user    => backup,
-    minute  => '0',
-    hour    => '5',
-    weekday => '7',
-  }
+  #file { $backup_dir:
+  #  ensure => directory,
+  #  owner  => backup,
+  #  group  => backup,
+  #  mode   => '0755',
+  #}
+  #file { '/usr/local/bin/ckan_backup.bash':
+  #  ensure  => file,
+  #  source  => 'puppet:///modules/ckan/ckan_backup.bash',
+  #  mode    => '0755',
+  #  require => File[$backup_dir],
+  #}
+  #cron {'ckan_backup':
+  #  command => '/usr/local/bin/ckan_backup.bash',
+  #  user    => backup,
+  #  minute  => '0',
+  #  hour    => '5',
+  #  weekday => '7',
+  #}
 }

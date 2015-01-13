@@ -12,6 +12,10 @@ class ckan::install {
  #   ensure => present,
  # }
 
+  package {'postgresql-devel':
+	ensure => present,
+  }
+
   # Install Postgres
   class { 'postgresql::server':
     pg_hba_conf_defaults => $ckan::pg_hba_conf_defaults,
@@ -21,7 +25,7 @@ class ckan::install {
 
   # Install CKAN deps
   $ckan_libs = ['libcurl-devel','httpd', 'xml-common', 'git', 'libxslt', 'libxslt-devel',
-                'libxml2', 'libxml2-devel', 'gcc', 'gcc-c++', 'make','postgresql-devel',
+                'libxml2', 'libxml2-devel', 'gcc', 'gcc-c++', 'make',
                 'java-1.6.0-openjdk-devel', 'java-1.6.0-openjdk', 'tomcat6', 'xalan-j2', 'unzip',
                 'policycoreutils-python','mod_wsgi','xml-commons-resolver','xml-commons-apis']
   package { $ckan_libs: ensure => present, }
