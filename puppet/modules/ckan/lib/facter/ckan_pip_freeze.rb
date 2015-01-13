@@ -1,4 +1,4 @@
-ckan_virtualenv = "/usr/lib/ckan"
+ckan_virtualenv = "/usr/lib/ckan/default"
 
 Facter.add("ckan_virtualenv") do
   setcode do

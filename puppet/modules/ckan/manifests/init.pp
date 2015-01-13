@@ -99,17 +99,13 @@ class ckan (
   $postgres_pass = pass,
   $pg_hba_conf_defaults = true,
 ){
-  # Check supported operating systems
-  #if $osfamily != 'debian' {
-  #  fail("Unsupported OS $osfamily.  Please use a debian based system")
-  #}
 
   File {
     owner => root,
     group => root,
   }
 
-  $ckan_package_dir = '/usr/local/ckan'
+  $ckan_package_dir = '/usr/lib/ckan/default'
 
   anchor { 'ckan::begin':
     notify => Class['ckan::service'],
@@ -129,10 +125,10 @@ class ckan (
   #  notify           => Class['ckan::service'],
   #  require          => Class['ckan::install'],
   #}
-  #class { 'ckan::db_config':
-  #  notify  => Class['ckan::service'],
+  class { 'ckan::db_config':
+    notify  => Class['ckan::service'],
   #  require => Class['ckan::config'],
-  #}
+  }
 
   class { 'ckan::service': }
   #class { 'ckan::postinstall':

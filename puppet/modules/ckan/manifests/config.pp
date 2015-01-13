@@ -23,10 +23,10 @@ class ckan::config (
   $backup_dir = '/backup'
 
   # Jetty configuration
-  file {'/etc/default/jetty':
-    ensure  => file,
-    source  => 'puppet:///modules/ckan/jetty',
-  }
+  #file {'/etc/default/jetty':
+  #  ensure  => file,
+  #  source  => 'puppet:///modules/ckan/jetty',
+  #}
   # Change default schema to use CKAN schema
   file {'/etc/solr/conf/schema.xml':
     ensure  => link,

@@ -5,10 +5,10 @@
 #   $ckan_pip_freeze
 define ckan::pip_package ($ensure = present, $owner, $local) {
   if $local {
-    $url = "-e /vagrant/src/${name}"
+    $url = "-r ${name}"
     $grep = "${name}@"
   } else {
-    $url = $name
+    $url = "-e ${name}"
     $grep = $name
   }
 
@@ -16,7 +16,7 @@ define ckan::pip_package ($ensure = present, $owner, $local) {
     present: {
       if !($grep in $ckan_pip_freeze) {
         exec { "pip_install_${name}":
-          command     => "${ckan_virtualenv}/bin/pip install --no-index --find-links=file:///vagrant/pypi --log-file ${ckan_virtualenv}/pip.log ${url}",
+          command     => "${ckan_virtualenv}/bin/pip install --log-file ${ckan_virtualenv}/pip.log ${url}",
           user        => $owner,
           logoutput   => "on_failure",
         }

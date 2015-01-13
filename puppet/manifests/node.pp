@@ -9,6 +9,9 @@ node 'ckan-dev' {
 	#	owner => "ckan",
 	#	group => "ckan",
 	#}
+        file {"/home/vagrant":
+		mode => 755,
+	}
 
 	user {"ckan":
 		require => Group["ckan"],
@@ -16,7 +19,7 @@ node 'ckan-dev' {
 		managehome => true,
 		gid => "ckan",
 		shell => "/bin/bash",
-		home => "/usr/lib/ckan/default",
+		home => "/usr/lib/ckan",
 	}
 
 	file {"/usr/lib/ckan/default/.bashrc":

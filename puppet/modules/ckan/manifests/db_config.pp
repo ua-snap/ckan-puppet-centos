@@ -23,17 +23,17 @@ class ckan::db_config {
     require  => Postgresql::Server::Role ['ckan_default'],
   }
   # create a ro user for datastore extension
-  postgresql::server::role { 'datastore_default' :
-    password_hash => 'pass',
-  }
+  # postgresql::server::role { 'datastore_default' :
+  #  password_hash => 'pass',
+  #}
   # grant privs for datastore user
-  postgresql::server::database_grant { 'datastore_default' :
-    privilege => 'CONNECT',
-    db        => 'datastore_default',
-    role      => 'datastore_default',
-    require   => [Postgresql::Server::Role['datastore_default'],
-                  Postgresql::Server::Db['datastore_default']],
-  }
+  #postgresql::server::database_grant { 'datastore_default' :
+  #  privilege => 'CONNECT',
+  #  db        => 'datastore_default',
+  #  role      => 'datastore_default',
+  #  require   => [Postgresql::Server::Role['datastore_default'],
+  #                Postgresql::Server::Db['datastore_default']],
+  #}
 #  postgresql::database_grant { 'SCHEMA' :
 #    privilege => 'USAGE, SELECT',
 #    db        => 'SCHEMA',
