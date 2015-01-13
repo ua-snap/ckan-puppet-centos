@@ -3,12 +3,6 @@ node 'ckan-dev' {
 		ensure => present,
 	}
 
-	#file {"/usr/lib/ckan/default":
-	#	require => [ User["ckan"], Group["ckan"] ],
-	#	ensure => directory,
-	#	owner => "ckan",
-	#	group => "ckan",
-	#}
         file {"/home/vagrant":
 		mode => 755,
 	}
