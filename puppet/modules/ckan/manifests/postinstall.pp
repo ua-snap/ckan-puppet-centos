@@ -9,4 +9,9 @@ class ckan::postinstall {
     exec_command => '/usr/bin/python /usr/lib/ckan/default/src/ckan/ckanext/datastore/bin/datastore_setup.py ckan_default datastore_default ckan_default ckan_default datastore_default -p postgres',
     require      => Check_run::Task['init_db'],
   }
+
+  file { '/etc/ckan/default/who.ini':
+     ensure => 'link',
+     target => '/usr/lib/ckan/default/src/ckan/who.ini',
+  }
 }

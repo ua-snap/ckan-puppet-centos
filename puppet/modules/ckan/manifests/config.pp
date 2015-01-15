@@ -28,10 +28,18 @@ class ckan::config (
   #  source  => 'puppet:///modules/ckan/jetty',
   #}
   # Change default schema to use CKAN schema
-  #file {'/etc/solr/conf/schema.xml':
-  #  ensure  => link,
-  #  target  => "$ckan_src/ckan/config/solr/schema-2.0.xml",
-  #}
+  file {'/etc/solr':
+	ensure => directory
+  }
+
+  file {'/etc/solr/conf':
+	ensure => directory
+  }
+
+  file {'/etc/solr/conf/schema.xml':
+    ensure  => link,
+    target  => "$ckan_src/ckan/config/solr/schema-2.0.xml",
+  }
 
   # CKAN configuration
   file { [$ckan_etc, $ckan_default]:
