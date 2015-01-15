@@ -73,29 +73,20 @@ class ckan::install {
   file {'/usr/share/solr':
 	ensure => directory,
   }
-	
-  #wget::fetch { 'Download Apache Solr':
-  #	source => $ckan::apache_solr_url,
-  #	destination => "/tmp/$ckan::apache_solr_tarball",
-  #	creates => "/tmp/$ckan::apache_solr_tarball",
-  #	timeout => 0,
-  #}
 
-  exec { "download_solr":
-	command => "/usr/bin/wget -q $ckan::apache_solr_url -O /tmp/$ckan::apache_solr_tarball",
-	creates => "/tmp/$ckan::apache_solr_tarball",
-	timeout => 1200,
-  }
+  Exec['download_solr'] 
+~> Exec['untar-solr']
 
-  file {"/tmp/$ckan::apache_solr_tarball":
-	require => Exec["download_solr"],
-  }
+exec { 'download_solr':
+command => "/usr/bin/wget -q $ckan::apache_solr_url -O /tmp/$ckan::apache_solr_tarball",
+creates => "/tmp/$ckan::apache_solr_tarball",
+timeout => 1200,
+}
 
-  exec { untar-solr:
-	command => "/bin/tar zxf /tmp/$ckan::apache_solr_tarball",
-	cwd => '/usr/share/solr',
-	refreshonly => true,
-	require => File["/tmp/$ckan::apache_solr_tarball"],
-  }
- 
+exec { 'untar-solr':
+command => "/bin/tar zxf /tmp/$ckan::apache_solr_tarball",
+cwd => '/usr/share/solr',
+refreshonly => true,
+}
+
 }
