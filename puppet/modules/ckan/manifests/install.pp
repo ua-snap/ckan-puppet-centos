@@ -75,10 +75,10 @@ class ckan::install {
   }
 
   Exec['download_solr'] 
--> Exec['untar-solr']
+~> Exec['untar-solr']
 -> File['/data']
 -> File['/data/solr']
--> File['/data/solr/solr.war']
+~> Exec['copy-solr']
 
 exec { 'download_solr':
 command => "/usr/bin/wget -q $ckan::apache_solr_url -O /tmp/$ckan::apache_solr_tarball",
@@ -99,15 +99,19 @@ ensure=>directory,
 file{ '/data/solr':
 ensure => directory,
   owner => 'tomcat',
-  source => '/usr/share/solr/apache-solr-1.4.1/example/solr/',
+  source => 'file:///usr/share/solr/apache-solr-1.4.1/example/solr/',
   recurse => true,
 }
 
 file {'/data/solr/solr.war':
 ensure => file,
-  after => File['/data/solr'],
 source => '/usr/share/solr/apache-solr-1.4.1/dist/apache-solr-1.4.1.war ',
 owner => 'tomcat',
+}
+
+exec {'copy-solr':
+  refreshonly => true,
+  command => '/bin/cp /usr/share/solr/apache-solr-1.4.1/dist/apache-solr-1.4.1/war /data/solr/solr.war',
 }
 
 }
