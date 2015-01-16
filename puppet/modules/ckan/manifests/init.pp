@@ -99,8 +99,6 @@ class ckan (
   $text_formats = '',
   $postgres_pass = pass,
   $pg_hba_conf_defaults = true,
-  $apache_solr_tarball = 'solr-1.4.1.tgz',
-  $apache_solr_url = 'https://archive.apache.org/dist/lucene/solr/1.4.1/apache-solr-1.4.1.tgz',
 ){
 
   File {

@@ -5,8 +5,6 @@
 #
 class ckan::install {
 
-  include wget
-
   # Install Postgresql and development packages
   package {'postgresql-devel':
 	ensure => present,
@@ -69,49 +67,6 @@ class ckan::install {
     local   => true,
   }
 
-  # Install Apache Solr
-  file {'/usr/share/solr':
-	ensure => directory,
-  }
-
-  Exec['download_solr'] 
-~> Exec['untar-solr']
--> File['/data']
--> File['/data/solr']
-~> Exec['copy-solr']
-
-exec { 'download_solr':
-command => "/usr/bin/wget -q $ckan::apache_solr_url -O /tmp/$ckan::apache_solr_tarball",
-creates => "/tmp/$ckan::apache_solr_tarball",
-timeout => 1200,
-}
-
-exec { 'untar-solr':
-command => "/bin/tar zxf /tmp/$ckan::apache_solr_tarball",
-cwd => '/usr/share/solr',
-refreshonly => true,
-}
-
-file { '/data':
-ensure=>directory,
-}
-
-file{ '/data/solr':
-ensure => directory,
-  owner => 'tomcat',
-  source => 'file:///usr/share/solr/apache-solr-1.4.1/example/solr/',
-  recurse => true,
-}
-
-file {'/data/solr/solr.war':
-ensure => file,
-source => '/usr/share/solr/apache-solr-1.4.1/dist/apache-solr-1.4.1.war ',
-owner => 'tomcat',
-}
-
-exec {'copy-solr':
-  refreshonly => true,
-  command => '/bin/cp /usr/share/solr/apache-solr-1.4.1/dist/apache-solr-1.4.1/war /data/solr/solr.war',
-}
+  include solr
 
 }
