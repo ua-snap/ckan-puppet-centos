@@ -18,7 +18,7 @@ class ckan::config (
   # the default image directory
   $ckan_img_dir   = "$ckan_src/ckan/public/base/images"
   $ckan_css_dir   = "$ckan_src/ckan/public/base/css"
-  $ckan_storage_path = '/var/lib/ckan/default'
+  $ckan_storage_path = '/usr/lib/ckan/storage'
   $license_file   = 'license.json'
   $backup_dir = '/backup'
 
@@ -68,11 +68,12 @@ class ckan::config (
     ensure => file,
   }
 
-  $ckan_data_dir = ['/var/lib/ckan',$ckan_storage_path]
-  file {$ckan_data_dir:
+  #$ckan_data_dir = ['/var/lib/ckan',$ckan_storage_path]
+  #file {$ckan_data_dir:
+  file {$ckan_storage_path:
    ensure => directory,
-   owner  => apache,
-   group  => apache,
+   owner  => ckan,
+   group  => ckan,
    mode   => '0755',
   }
 

@@ -82,8 +82,8 @@ class ckan (
   $site_intro = 'A CKAN test installation',
   $site_about = 'Test Site',
   $plugins = 'stats text_preview recline_preview datastore resource_proxy pdf_preview',
-  $app_instance_id = '',
-  $beaker_secret = '',
+  $app_instance_id = '{0888dd5b-48da-4ba8-9b2e-5aee8e98315f}',
+  $beaker_secret = '5FsEpYOsRsGTvE6EkR1ZzvQ3W',
   $site_logo = '',
   $license = '',
   $is_ckan_from_repo = false,
@@ -132,12 +132,10 @@ class ckan (
   }
 
   class { 'ckan::service': }
-  #class { 'ckan::postinstall':
-  #  require => Class['ckan::service'],
-  #}
-  #anchor { 'ckan::end':
-  #  require => Class['ckan::postinstall'],
-  #}
-
-   anchor { 'ckan::end': }
+  class { 'ckan::postinstall':
+    require => Class['ckan::service'],
+  }
+  anchor { 'ckan::end':
+    require => Class['ckan::postinstall'],
+  }
 }
