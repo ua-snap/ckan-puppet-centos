@@ -9,9 +9,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "puppetlabs/centos-6.5-64-puppet"
   config.vm.hostname = "ckan-dev"
   config.vm.network "forwarded_port", guest: 80, host: 8080
+  config.vm.network "forwarded_port", guest: 8080, host: 8081
 
    config.vm.provider "virtualbox" do |vb|
-     vb.customize ["modifyvm", :id, "--memory", "2048"]
+     vb.customize ["modifyvm", :id, "--memory", "4096"]
    end
 
   config.vm.provision :shell do |shell|
@@ -22,10 +23,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
                              puppet module install puppetlabs-concat;
                              puppet module install puppetlabs-postgresql;
 			     puppet module install puppetlabs-apache;
-			     puppet module install saz/memcached;
-			     puppet module install example42/puppi;
-			     puppet module install example42/monitor;
-			     puppet module install example42/solr;
 			     puppet module install stankevich/python"
   end
 

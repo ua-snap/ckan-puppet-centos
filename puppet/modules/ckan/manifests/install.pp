@@ -67,6 +67,6 @@ class ckan::install {
     local   => true,
   }
 
-  include solr
+  include ckan::solr
 
 }

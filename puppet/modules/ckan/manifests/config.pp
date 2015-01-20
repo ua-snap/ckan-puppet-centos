@@ -53,6 +53,7 @@ class ckan::config (
     }
   }
 
+  # Configure Apache
   file { 'ckan_default.conf':
     path => '/etc/httpd/conf.d/ckan_default.conf',
     ensure => file,
@@ -60,13 +61,20 @@ class ckan::config (
     content => template("ckan/ckan_default.conf.erb"),
   }
 
-  #$ckan_data_dir = ['/var/lib/ckan',$ckan_storage_path]
-  #file {$ckan_data_dir:
-  #  ensure => directory,
-  #  owner  => www-data,
-  #  group  => www-data,
-  #  mode   => '0755',
-  #}
+  # Configure Apache / WSGI gateway
+  file { 'apache.wsgi':
+    path => '/etc/ckan/default/apache.wsgi',
+    source => 'puppet:///modules/ckan/apache.wsgi',
+    ensure => file,
+  }
+
+  $ckan_data_dir = ['/var/lib/ckan',$ckan_storage_path]
+  file {$ckan_data_dir:
+   ensure => directory,
+   owner  => apache,
+   group  => apache,
+   mode   => '0755',
+  }
 
   # download the license file if it exists
   #if $ckan::license != '' {
