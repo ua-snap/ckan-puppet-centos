@@ -22,6 +22,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
                              puppet module install maestrodev-wget;
                              puppet module install puppetlabs-concat;
                              puppet module install puppetlabs-postgresql;
+			     puppet module install puppetlabs-firewall;
 			     puppet module install puppetlabs-apache;
 			     puppet module install stankevich/python"
   end

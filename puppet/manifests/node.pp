@@ -1,4 +1,7 @@
 node 'ckan-dev' {
+	# Import Firewall configuration for port 80 and port 8080 access
+	import 'fw_config.pp'
+
 	group {"ckan":
 		ensure => present,
 	}

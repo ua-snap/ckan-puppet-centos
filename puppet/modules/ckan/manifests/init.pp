@@ -77,8 +77,8 @@
 #
 class ckan (
   $site_url = 'localhost',
-  $site_title = 'SNAP CKAN Development Instance',
-  $site_description = 'A CKAN Development environment',
+  $site_title = 'CKAN 4 SNAP',
+  $site_description = 'SNAP\'s CKAN Development Instance',
   $site_intro = 'A CKAN test installation',
   $site_about = 'Test Site',
   $plugins = 'stats text_preview recline_preview datastore resource_proxy pdf_preview',
