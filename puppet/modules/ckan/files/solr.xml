@@ -1,0 +1,5 @@
+<solr persistent="false">
+  <cores adminPath="/admin/cores">
+    <core name ="ckan-schema" instanceDir="core0"/>
+  </cores>
+</solr>

@@ -65,8 +65,9 @@ class ckan::install {
     ensure  => present,
     owner   => 'ckan',
     local   => true,
+    notify => Class['ckan::solr']
   }
 
-  #include ckan::solr
+  include ckan::solr
 
 }
