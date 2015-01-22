@@ -3,14 +3,14 @@ class my_fw::pre {
 		require => undef,
 	}
 
-	firewall {'Accept all port 80 requests':
+	firewall {'000 accept all port 80 requests':
 		proto => 'tcp',
 		      action => 'accept',
 		      chain => 'INPUT',
 		      dport => ['80'],
 		      table => 'filter',
 	}
-	firewall {'Accept all port 8080 requests':
+	firewall {'001 Accept all port 8080 requests':
 		proto => 'tcp',
 		      action => 'accept',
 		      chain => 'INPUT',
