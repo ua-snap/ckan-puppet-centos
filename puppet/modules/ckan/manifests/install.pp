@@ -5,16 +5,16 @@
 #
 class ckan::install {
 
-  # Install Postgresql and development packages
-  package {'postgresql-devel':
-	ensure => present,
-  }
-
-  # Install Postgres
-  class { 'postgresql::server':
+  # Install Postgres at version 9.3
+  class {'postgresql::globals':
+    manage_package_repo => true,
+    version => '9.3',
+  } -> class { 'postgresql::server':
     pg_hba_conf_defaults => $ckan::pg_hba_conf_defaults,
     postgres_password => $ckan::postgres_pass,
     listen_addresses => '*',
+  } -> class { 'postgresql::lib::devel':
+    package_name => 'postgresql93-devel', # Need this prior to doing a pip install of psycopg2
   }
 
   # Install CKAN dependencies
@@ -32,12 +32,12 @@ class ckan::install {
   }
 
   $python_requirements = [
-    'python-psycopg2',
     'python-paste-script',
   ]
   package { $python_requirements:
     ensure => installed,
     before => Python::VirtualEnv[$ckan_virtualenv],
+    require => Class['postgresql::lib::devel']
   }
   python::virtualenv { $ckan_virtualenv:
     ensure => present,
