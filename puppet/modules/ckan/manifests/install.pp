@@ -19,7 +19,7 @@ class ckan::install {
 
   # Install CKAN dependencies
   $ckan_libs = ['libcurl-devel','httpd', 'xml-common', 'git', 'libxslt', 'libxslt-devel',
-                'libxml2', 'libxml2-devel', 'gcc', 'gcc-c++', 'make','redis',
+                'libxml2', 'libxml2-devel', 'gcc', 'gcc-c++', 'make',
                 'java-1.7.0-openjdk-devel', 'java-1.7.0-openjdk', 'tomcat6', 'xalan-j2', 'unzip',
                 'policycoreutils-python','mod_wsgi','xml-commons-resolver','xml-commons-apis']
   package { $ckan_libs: ensure => present, }
@@ -49,7 +49,6 @@ class ckan::install {
   # Pip install everything
   $pip_pkgs_remote = [
     'git+https://github.com/ckan/ckan.git@ckan-2.2.1#egg=ckan',
-    'git+https://github.com/okfn/ckanext-harvest.git@stable#egg=ckanext-harvest'
   ]
   ckan::pip_package { $pip_pkgs_remote:
     require => Python::Virtualenv[$ckan_virtualenv],
@@ -69,5 +68,8 @@ class ckan::install {
   }
 
   include ckan::solr
+  include ckan::ext::harvest
+  #include ckan::ext::spatial
+  #include ckan::ext::googleanalytics
 
 }

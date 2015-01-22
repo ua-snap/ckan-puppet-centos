@@ -81,7 +81,7 @@ class ckan (
   $site_description = 'SNAP\'s CKAN Development Instance',
   $site_intro = 'A CKAN test installation',
   $site_about = 'Test Site',
-  $plugins = 'stats text_preview recline_preview datastore resource_proxy pdf_preview',
+  $plugins = 'stats text_preview recline_preview datastore resource_proxy pdf_preview harvest',
   $app_instance_id = '{0888dd5b-48da-4ba8-9b2e-5aee8e98315f}',
   $beaker_secret = '5FsEpYOsRsGTvE6EkR1ZzvQ3W',
   $site_logo = '',
