@@ -10,4 +10,14 @@ class ckan::postinstall {
      ensure => 'link',
      target => '/usr/lib/ckan/default/src/ckan/who.ini',
   }
+
+  # Add extensions
+  class { 'ckan::ext::harvest':
+    require => Exec['init_db']
+  } ->
+  class{ 'ckan::ext::spatial':
+      require => Exec['init_db'],
+  }
+  #include ckan::ext::googleanalytics
+
 }

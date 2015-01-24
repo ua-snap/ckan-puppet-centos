@@ -9,7 +9,7 @@ class ckan::ext::harvest {
   ckan::ext { 'harvest':
     require => Package['redis']
   } ~> exec {'create database tables':
-    command => "/bin/bash $ckan_package_dir/bin/activate && paster --plugin=ckanext-harvest harvester initdb --config=$ckan_default/production.ini",
+    command => "/bin/bash /usr/lib/ckan/default/bin/activate && paster --plugin=ckanext-harvest harvester initdb --config=/etc/ckan/default/production.ini",
     refreshonly => true
   }
 }

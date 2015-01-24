@@ -81,7 +81,7 @@ class ckan (
   $site_description = 'SNAP\'s CKAN Development Instance',
   $site_intro = 'A CKAN test installation',
   $site_about = 'Test Site',
-  $plugins = 'stats text_preview recline_preview datastore resource_proxy pdf_preview harvest',
+  $plugins = 'stats text_preview recline_preview datastore resource_proxy pdf_preview',
   $app_instance_id = '{0888dd5b-48da-4ba8-9b2e-5aee8e98315f}',
   $beaker_secret = '5FsEpYOsRsGTvE6EkR1ZzvQ3W',
   $site_logo = '',
@@ -97,7 +97,7 @@ class ckan (
   $datapusher_formats = 'csv xls application/csv application/vnd.ms-excel',
   $preview_loadable = 'html htm rdf+xml owl+xml xml n3 n-triples turtle plain atom csv tsv rss txt json',
   $text_formats = '',
-  $postgres_pass = pass,
+  $postgres_pass = 'pass',
   $pg_hba_conf_defaults = true,
 ){
 

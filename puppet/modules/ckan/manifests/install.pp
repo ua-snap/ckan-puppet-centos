@@ -68,8 +68,5 @@ class ckan::install {
   }
 
   include ckan::solr
-  include ckan::ext::harvest
-  #include ckan::ext::spatial
-  #include ckan::ext::googleanalytics
 
 }
