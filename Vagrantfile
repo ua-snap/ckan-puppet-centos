@@ -23,7 +23,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
                              puppet module install puppetlabs-concat;
                              puppet module install puppetlabs/postgresql;
 			     puppet module install puppetlabs-firewall;
-			     puppet module install puppetlabs-apache;
+                             puppet module install puppetlabs-apache;
+			     puppet module install puppetlabs/vcsrepo;
 			     puppet module install stankevich/python"
   end
 

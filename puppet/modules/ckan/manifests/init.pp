@@ -97,7 +97,7 @@ class ckan (
   $datapusher_formats = 'csv xls application/csv application/vnd.ms-excel',
   $preview_loadable = 'html htm rdf+xml owl+xml xml n3 n-triples turtle plain atom csv tsv rss txt json',
   $text_formats = '',
-  $postgres_pass = pass,
+  $postgres_pass = 'pass',
   $pg_hba_conf_defaults = true,
 ){
 
