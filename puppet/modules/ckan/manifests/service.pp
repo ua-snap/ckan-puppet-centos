@@ -16,4 +16,17 @@ class ckan::service {
     hasrestart => true
 }
 
+  service {'supervisord':
+  ensure => running,
+    enable => true,
+    hasstatus => true,
+    hasrestart => true
+}
+  service {'redis':
+  ensure => running,
+    enable => true,
+    hasstatus => true,
+    hasrestart => true
+}
+
 }
