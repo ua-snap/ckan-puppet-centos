@@ -25,10 +25,12 @@ class ckan::db_config {
     password => 'pass',
     require  => Postgresql::Server::Role ['ckan'],
   }
+
   # create a ro user for datastore extension
   postgresql::server::role {'datastore' :
     password_hash => 'pass',
   }
+
   # grant privs for datastore user
   postgresql::server::database_grant { 'datastore_default' :
     privilege => 'CONNECT',
@@ -37,6 +39,7 @@ class ckan::db_config {
     require   => [Postgresql::Server::Role['datastore'],
                   Postgresql::Server::Db['datastore_default']],
   }
+
   #postgresql::server::database_grant { 'SCHEMA' :
   #  privilege => 'USAGE, SELECT',
   #  db        => 'SCHEMA',
@@ -44,8 +47,4 @@ class ckan::db_config {
   #  require   => Postgresql::Server::Role['datastore'],
   #}
 
-### TODO db ckan_default should be OWNED by user ckan_default
-### TODO db datastore_db should be OWNED by user ckan_default
-### TODO MAYBE run this command to set the correct privs
-# python /usr/lib/ckan/default/src/ckan/ckanext/datastore/bin/datastore_setup.py ckan_default datastore_default ckan_default ckan_default datastore_default -p postgres
 }
