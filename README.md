@@ -1,6 +1,5 @@
 # ckan-puppet-centos
 
-
 A Vagrant installation of CKAN using Puppet targeting CentOS 6.5.  Heavily derived from [upstream repo].
 
 # How to run
@@ -12,7 +11,6 @@ First, clone this repo, then `vagrant up` inside the cloned repository directory
  1. Activate the Python virtualenv so we can use the admin tools for CKAN: `source /usr/lib/ckan/default/bin/activate`
  1. Create an admin user: `paster --plugin=ckan sysadmin add admin -c /etc/ckan/default/production.ini`
  1. Restart web server: `service httpd restart`
- 1. Stop and start `supervisord` (it behaves a little differently from other services so restart doesn't do what we want here): `service supervisord stop; service supervisord start`
  1. Done!  `exit` and `exit` and `exit`.
 
 Once that's done, you can use these local URLs to access CKAN and its resources:
