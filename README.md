@@ -1,6 +1,6 @@
 # ckan-puppet-centos
 
-A Vagrant installation of CKAN using Puppet targeting CentOS 6.5.  Heavily derived from [upstream repo].
+A Vagrant installation of CKAN using Puppet targeting CentOS 6.5.  Heavily derived from [Michael Speth's CKAN repository](https://github.com/Conzar/ckan-puppet).
 
 # How to run
 
