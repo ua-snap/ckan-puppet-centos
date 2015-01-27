@@ -44,4 +44,12 @@ class ckan::ext::spatial {
     db      => 'ckan_default',
   }
 
+  # Need libxml2 at version 2.9 for the spatial harvesters
+  file { '/tmp/install_libxml2-2.9.sh':
+    source => 'puppet:///modules/ckan/install_libxml2-2.9.sh',
+  } ~> exec {'/tmp/install_libxml2-2.9.sh':
+    command => '/bin/bash /tmp/install_libxml2-2.9.sh',
+    refreshonly => true
+  }
+
 }
