@@ -9,7 +9,7 @@ node 'ckan-dev' {
 
 	class { ['my_fw::pre', 'my_fw::post']: }
 	class { 'firewall' : }
-
+	
 	group {"ckan":
 		ensure => present,
 	}

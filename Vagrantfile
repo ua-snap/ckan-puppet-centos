@@ -12,13 +12,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network "forwarded_port", guest: 8080, host: 8081
 
    config.vm.provider "virtualbox" do |vb|
-     vb.customize ["modifyvm", :id, "--memory", "4096"]
+     vb.customize ["modifyvm", :id, "--memory", "2048"]
    end
 
   config.vm.provision :shell do |shell|
-             shell.inline = "if [ ! -e /etc/yum.repos.d/epel.repo ]; then wget http://download.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm;
-                             rpm -ivh epel-release-6-8.noarch.rpm; fi;
-			     puppet module install puppetlabs-stdlib;
+             shell.inline = "puppet module install puppetlabs-stdlib;
                              puppet module install maestrodev-wget;
                              puppet module install puppetlabs-concat;
                              puppet module install puppetlabs/postgresql;

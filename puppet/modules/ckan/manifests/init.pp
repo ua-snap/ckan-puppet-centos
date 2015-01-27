@@ -75,6 +75,7 @@
 # === Copyright
 # GPLv3
 #
+# import 'yum_repos.pp'
 class ckan (
   $site_url = 'localhost',
   $site_title = 'CKAN 4 SNAP',
@@ -111,6 +112,11 @@ class ckan (
   anchor { 'ckan::begin':
     notify => Class['ckan::service'],
   }
+
+  include ckan::epelrepo
+  include ckan::elgisrepo
+  include ckan::pgdg92repo
+
   class { 'ckan::install':
     notify  => Class['ckan::service'],
     require => Anchor['ckan::begin'],
