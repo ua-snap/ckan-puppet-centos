@@ -11,6 +11,7 @@ First, clone this repo, then `vagrant up` inside the cloned repository directory
  1. Activate the Python virtualenv so we can use the admin tools for CKAN: `source /usr/lib/ckan/default/bin/activate`
  1. Create an admin user: `paster --plugin=ckan sysadmin add admin -c /etc/ckan/default/production.ini`
  1. Restart web server: `service httpd restart`
+ 1. Stop and start the `supervisord` process, which manages the harvester, to ensure that it has the right configuration (doing a restart on the service doesn't do what we expect here, need to explicitly stop and start): `service supervisord stop; service supervisord start`
  1. Done!  `exit` and `exit` and `exit`.
 
 Once that's done, you can use these local URLs to access CKAN and its resources:

@@ -2,10 +2,6 @@
 #
 class ckan::ext::harvest {
 
-  package { 'redis' :
-    ensure => present,
-  }
-
   ckan::ext { 'harvest':
     require => Package['redis']
   } ~> exec {'create database tables':

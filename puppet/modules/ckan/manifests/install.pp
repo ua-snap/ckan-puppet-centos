@@ -19,7 +19,7 @@ class ckan::install {
 
   # Install CKAN dependencies
   $ckan_libs = ['libcurl-devel','httpd', 'xml-common', 'git', 'libxslt', 'libxslt-devel',
-                'libxml2', 'libxml2-devel', 'gcc', 'gcc-c++', 'make', 'supervisor',
+                'libxml2', 'libxml2-devel', 'gcc', 'gcc-c++', 'make', 'supervisor', 'redis',
                 'java-1.7.0-openjdk-devel', 'java-1.7.0-openjdk', 'tomcat6', 'xalan-j2', 'unzip',
                 'policycoreutils-python','mod_wsgi','xml-commons-resolver','xml-commons-apis']
   package { $ckan_libs: ensure => present, }
