@@ -1,14 +1,40 @@
-node 'ckan-dev' {
-	# Import Firewall configuration for port 80 and port 8080 access
-	import 'fw_config.pp'
+class pre_firewall {
+        Firewall {
+                require => undef,
+        }
 
+        firewall {'000 accept all port 80 requests':
+                proto => 'tcp',
+                      action => 'accept',
+                      chain => 'INPUT',
+                      dport => ['80'],
+                      table => 'filter',
+        }
+        firewall {'001 Accept all port 8080 requests':
+                proto => 'tcp',
+                      action => 'accept',
+                      chain => 'INPUT',
+                      dport => ['8080'],
+                      table => 'filter',
+        }
+}
+
+class post_firewall {
+        firewall { '999 drop all':
+                proto   => 'all',
+                        action  => 'drop',
+                        before  => undef,
+        }
+}
+
+
+node 'ckan-dev' {
 	Firewall {
-		before => Class['my_fw::post'],
-		require => Class['my_fw::pre'],
+		before => Class['post_firewall'],
+		require => Class['pre_firewall'],
 	}
 
-	class { ['my_fw::pre', 'my_fw::post']: }
-	class { 'firewall' : }
+	class { ['pre_firewall', 'post_firewall']: }
 	
 	group {"ckan":
 		ensure => present,
@@ -40,5 +66,5 @@ node 'ckan-dev' {
 		ensure => "installed"
 	}
 
-	include ckan
+	# include ckan
 }
