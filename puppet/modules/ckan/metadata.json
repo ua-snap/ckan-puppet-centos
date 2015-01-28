@@ -1,25 +1,27 @@
 {
-  "name": "conzar-ckan",
-  "version": "1.0.6",
-  "author": "landcareresearch",
-  "summary": "Puppet module for deploying CKAN",
+  "name": "ckan-puppet",
+  "version": "1.0.0",
+  "author": "Bruce Crevensten",
+  "summary": "A Puppet module for deploying CKAN in RedHat / CentOS 6",
   "license": "GPLv3",
-  "source": "git@github.com:Conzar/ckan-puppet.git",
-  "project_page": "https://github.com/Conzar/ckan-puppet",
-  "issues_url": "https://github.com/Conzar/ckan-puppet/issues",
+  "source": "https://github.com/ua-snap/ckan-puppet.git",
+  "project_page": "https://github.com/ua-snap/ckan-puppet",
+  "issues_url": "https://github.com/ua-snap/ckan-puppet/issues",
   "operatingsystem_support": [
     {
-      "operatingsystem": "Ubuntu",
+      "operatingsystem": "RedHat",
       "operatingsystemrelease": [
-        "12.04"
+        "6.0"
       ]
     }
   ],
   "dependencies": [
+    {"name":"puppetlabs/stdlib","version_requirement":">= 4.5.1"},
+    {"name":"puppetlabs/firewall","version_requirement":">= 1.3.0"},
+    {"name":"stankevich/python","version_requirement":">= 1.8.2"},
     {"name":"puppetlabs/concat","version_requirement":">= 1.1.0"},
-    {"name":"puppetlabs/nodejs","version_requirement":">= 0.4.0"},
+    {"name":"puppetlabs/vcsrepo","version_requirement":">= 1.2.0"},
     {"name":"puppetlabs/postgresql","version_requirement":">= 3.2.0"},
-    {"name":"puppetlabs/vcsrepo","version_requirement":">= 1.1.0"},
     {"name":"maestrodev/wget","version_requirement":">= 1.3.0"}
   ]
 }
