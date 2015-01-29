@@ -10,7 +10,14 @@ class pre_firewall {
                       dport => ['80'],
                       table => 'filter',
         }
-        firewall {'001 Accept all port 8080 requests':
+	firewall {'001 accept all port 5000 requests':
+                proto => 'tcp',
+                      action => 'accept',
+                      chain => 'INPUT',
+                      dport => ['5000'],
+                      table => 'filter',
+        }
+        firewall {'002 Accept all port 8080 requests':
                 proto => 'tcp',
                       action => 'accept',
                       chain => 'INPUT',

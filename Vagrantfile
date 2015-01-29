@@ -9,6 +9,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "puppetlabs/centos-6.5-64-puppet"
   config.vm.hostname = "ckan-dev"
   config.vm.network "forwarded_port", guest: 80, host: 8080
+  config.vm.network "forwarded_port", guest: 5000, host: 5000
   config.vm.network "forwarded_port", guest: 8080, host: 8081
 
    config.vm.provider "virtualbox" do |vb|
@@ -17,7 +18,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.provision :shell do |shell|
              shell.inline = "puppet module install puppetlabs-stdlib;
-                             puppet module install maestrodev-wget;
+                             #puppet module install maestrodev-wget;
                              puppet module install puppetlabs-concat;
                              puppet module install puppetlabs/postgresql;
 			     puppet module install puppetlabs-firewall;
