@@ -114,8 +114,6 @@ class ckan (
   }
 
   include ckan::epelrepo
-  include ckan::elgisrepo
-  include ckan::pgdg92repo
 
   class { 'ckan::install':
     notify  => Class['ckan::service'],

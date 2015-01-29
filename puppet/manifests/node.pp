@@ -66,5 +66,5 @@ node 'ckan-dev' {
 		ensure => "installed"
 	}
 
-	# include ckan
+	include ckan
 }
