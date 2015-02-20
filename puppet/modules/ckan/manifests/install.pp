@@ -48,7 +48,7 @@ class ckan::install {
 
   # Pip install everything
   $pip_pkgs_remote = [
-    'git+https://github.com/ckan/ckan.git@ckan-2.2.1#egg=ckan',
+    'git+https://github.com/ckan/ckan.git@release-v2.3#egg=ckan',
   ]
   ckan::pip_package { $pip_pkgs_remote:
     require => Python::Virtualenv[$ckan_virtualenv],

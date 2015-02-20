@@ -19,6 +19,7 @@ class ckan::solr {
   exec {'/tmp/install_solr.sh':
     command => '/bin/bash /tmp/install_solr.sh',
     refreshonly => true,
+    timeout => 1800,
     notify => Service['tomcat6']
   }
 
