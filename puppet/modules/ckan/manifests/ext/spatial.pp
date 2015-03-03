@@ -49,6 +49,7 @@ class ckan::ext::spatial {
     source => 'puppet:///modules/ckan/install_libxml2-2.9.sh',
   } ~> exec {'/tmp/install_libxml2-2.9.sh':
     command => '/bin/bash /tmp/install_libxml2-2.9.sh',
+    timeout => 1600,
     refreshonly => true
   }
 

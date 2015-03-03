@@ -16,6 +16,7 @@ define ckan::python_package (
         command     => "${virtualenv}/bin/pip --log-file ${virtualenv}/pip.log install ${url}",
         unless      => $unless
         user        => $owner,
+	timeout     => 1600,
       }
     }
 
