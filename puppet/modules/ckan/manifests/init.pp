@@ -75,13 +75,13 @@
 # === Copyright
 # GPLv3
 #
-# import 'yum_repos.pp'
 class ckan (
   $site_url = 'localhost',
   $site_title = 'CKAN 4 SNAP',
   $site_description = 'SNAP\'s CKAN Development Instance',
   $site_intro = 'A CKAN test installation',
   $site_about = 'Test Site',
+  $debug_mode = 'true',
   $plugins = 'stats text_preview recline_preview datastore resource_proxy pdf_preview',
   $app_instance_id = '{0888dd5b-48da-4ba8-9b2e-5aee8e98315f}',
   $beaker_secret = '5FsEpYOsRsGTvE6EkR1ZzvQ3W',

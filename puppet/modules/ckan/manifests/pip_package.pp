@@ -19,6 +19,7 @@ define ckan::pip_package ($ensure = present, $owner, $local) {
           command     => "${ckan_virtualenv}/bin/pip install --log-file ${ckan_virtualenv}/pip.log ${url}",
           user        => $owner,
           logoutput   => "on_failure",
+          timeout => 1600,
         }
       }
     }

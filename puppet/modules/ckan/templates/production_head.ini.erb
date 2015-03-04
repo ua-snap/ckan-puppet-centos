@@ -14,7 +14,7 @@
 [DEFAULT]
 
 # WARNING: *THIS SETTING MUST BE SET TO FALSE ON A PRODUCTION ENVIRONMENT*
-debug = false
+debug = <%= scope.lookupvar('ckan::debug_mode')  -%> 
 
 [server:main]
 use = egg:Paste#http
