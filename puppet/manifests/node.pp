@@ -65,6 +65,13 @@ node 'ckan-dev' {
 		target => '/etc/bashrc',
 	}
 
+        file {"/var/log/ckan":
+		ensure => "directory",
+		owner => "ckan",
+		group => "ckan",
+		mode => 755,
+	}
+
 	package { "screen":
 		ensure => "installed"
 	}
