@@ -6,7 +6,7 @@ VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
-  config.vm.box = "puppetlabs/centos-6.5-64-puppet"
+  config.vm.box = "puppetlabs/centos-6.6-64-puppet"
   config.vm.hostname = "ckan-dev"
   config.vm.network "forwarded_port", guest: 80, host: 8080
   config.vm.network "forwarded_port", guest: 5000, host: 5000
@@ -17,14 +17,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
    end
 
   config.vm.provision :shell do |shell|
-             shell.inline = "puppet module install puppetlabs-stdlib;
-                             #puppet module install maestrodev-wget;
-                             puppet module install puppetlabs-concat;
-                             puppet module install puppetlabs/postgresql;
-			     puppet module install puppetlabs-firewall;
-                             puppet module install puppetlabs-apache;
-			     puppet module install puppetlabs/vcsrepo;
-			     puppet module install stankevich/python"
+    shell.inline = "puppet module install puppetlabs-stdlib;
+      puppet module install puppetlabs/postgresql;
+      puppet module install puppetlabs-firewall;
+      puppet module install puppetlabs-apache;
+      puppet module install puppetlabs/vcsrepo;
+      puppet module install stankevich/python"
   end
 
   config.vm.provision "puppet" do |puppet|
