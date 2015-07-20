@@ -113,8 +113,6 @@ class ckan (
     notify => Class['ckan::service'],
   }
 
-  include ckan::epelrepo
-
   class { 'ckan::install':
     notify  => Class['ckan::service'],
     require => Anchor['ckan::begin'],
