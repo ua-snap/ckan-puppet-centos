@@ -14,7 +14,7 @@ First, clone this repo, then `vagrant up` inside the cloned repository directory
  1. Stop and start the `supervisord` process, which manages the harvester, to ensure that it has the right configuration (doing a restart on the service doesn't do what we expect here, need to explicitly stop and start): `service supervisord stop; service supervisord start`
  1. Done!  `exit` and `exit` and `exit`.
 
-Once that's done, you can launch CKAN by following directions [here](https://github.com/ua-snap/data-distribution) if using the system in debug mode (default for this repo).
+Once that's done, you can launch CKAN by following directions [here](https://github.com/ua-snap/data-distribution) if using the system in development mode (default for this repo).
 
 If serving via Apache, you can use these URLs to access CKAN and its resources:
 

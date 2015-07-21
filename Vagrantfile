@@ -16,6 +16,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
      vb.customize ["modifyvm", :id, "--memory", "2048"]
    end
 
+   # Uncomment this if you want to sync the folders
+   # in a dev context.
+   #config.vm.synced_folder "ckanext-snap_harvester", "/usr/lib/ckan/default/src/ckanext-snap_harvester"
+   #config.vm.synced_folder "ckanext-snap_theme", "/usr/lib/ckan/default/src/ckanext-snap_theme"
+
   config.vm.provision :shell do |shell|
     shell.inline = "puppet module install puppetlabs-stdlib;
       puppet module install puppetlabs/postgresql;
