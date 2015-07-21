@@ -34,7 +34,7 @@ class ckan::postinstall {
   file { '/etc/supervisord.conf':
     source => 'puppet:///modules/ckan/supervisord.conf'
   } -> cron { 'harvest':
-    command => '/usr/lib/ckan/default/bin/paster --plugin=ckanext-harvest harvester run --config=/etc/ckan/default/production.ini',
+    command => '/usr/lib/ckan/default/bin/paster --plugin=ckanext-harvest harvester run --config=/etc/ckan/default/production.ini > /dev/null 2>&1',
     user => 'ckan',
     minute => '*/1',
   }
